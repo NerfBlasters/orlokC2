@@ -1,23 +1,29 @@
 package main
 
-import "github.com/NerfBlasters/OrlokC2/internal/router"
-import "github.com/go-chi/chi/v5"
+import (
+	"fmt"
+	"log"
+	"net/http"
 
+	"github.com/go-chi/chi/v5"
+)
 
-const serverAddr = "127.0.0.1" no useages new *
-const serverPort = 8080 no useages new *
+//import "github.com/NerfBlasters/OrlokC2/internal/router"
 
-func main() { new *
+const serverAddr = "127.0.0.1"
+const serverPort = 8080
+
+func main() {
 	r := chi.NewRouter()
 
 	router.SetupRoutes(r)
 
-	serverAddrPort := fmt.Sprintf(format:"%s:%s", serverAddr, serverPort)
+	serverAddrPort := fmt.Sprintf("%s:%s", serverAddr, serverPort)
 
-	log.Printf(format:"Server listening on %s\n", serverAddrPort)
+	log.Printf("Server listening on %s\n", serverAddrPort)
 
 	err := http.ListenAndServe(serverAddrPort, r)
 	if err != nil {
-		log.Fatal(format:"Failed to start server: %v\n", err)
+		log.Fatal("Failed to start server: %v\n", err)
 	}
 }
